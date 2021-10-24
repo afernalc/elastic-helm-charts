@@ -21,8 +21,8 @@ roles:
   - remote_cluster_client
   - transform
 #ARR Only one elastic node
-replicas: 3
-minimumMasterNodes: 2
+replicas: 1
+minimumMasterNodes: 1
 
 esMajorVersion: ""
 
@@ -224,10 +224,10 @@ sysctlVmMaxMapCount: 262144
 
 readinessProbe:
   failureThreshold: 3
-  initialDelaySeconds: 10
-  periodSeconds: 10
+  initialDelaySeconds: 120
+  periodSeconds: 100
   successThreshold: 3
-  timeoutSeconds: 5
+  timeoutSeconds: 50
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html#request-params wait_for_status
 clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
