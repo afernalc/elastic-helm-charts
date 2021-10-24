@@ -20,9 +20,9 @@ roles:
   - ml
   - remote_cluster_client
   - transform
-
-replicas: 3
-minimumMasterNodes: 2
+#ARR Only one elastic node
+replicas: 1
+minimumMasterNodes: 1
 
 esMajorVersion: ""
 
@@ -84,7 +84,7 @@ esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 resources:
   requests:
     cpu: "1000m"
-    memory: "2Gi"
+    memory: "1Gi"
   limits:
     cpu: "1000m"
     memory: "2Gi"
@@ -103,7 +103,7 @@ volumeClaimTemplate:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 30Gi
+      storage: 10Gi
 
 rbac:
   create: false
