@@ -73,21 +73,24 @@ image: "docker.elastic.co/elasticsearch/elasticsearch"
 imageTag: "8.0.0-SNAPSHOT"
 imagePullPolicy: "IfNotPresent"
 
+# Permit co-located instances for solitary minikube virtual machines.
+antiAffinity: "soft"
+
 podAnnotations: {}
 # iam.amazonaws.com/role: es-cluster
 
 # additionals labels
 labels: {}
 
-esJavaOpts: "" # example: "-Xmx1g -Xms1g"
+esJavaOpts: "-Xmx128m -Xms128m" # example: "-Xmx1g -Xms1g"
 
 resources:
   requests:
-    cpu: "1000m"
-    memory: "1Gi"
+    cpu: "100m"
+    memory: "512M"
   limits:
     cpu: "1000m"
-    memory: "2Gi"
+    memory: "512M"
 
 initResources: {}
 # limits:
@@ -99,12 +102,14 @@ initResources: {}
 
 networkHost: "0.0.0.0"
 
+# Request smaller persistent volumes.
 volumeClaimTemplate:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "standard"
   resources:
     requests:
-      storage: 5Gi
-
+      storage: 100M
+      
 rbac:
   create: false
   serviceAccountAnnotations: {}
