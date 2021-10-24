@@ -21,7 +21,7 @@ roles:
   - remote_cluster_client
   - transform
 #ARR Only one elastic node
-replicas: 31
+replicas: 3
 minimumMasterNodes: 2
 
 esMajorVersion: ""
