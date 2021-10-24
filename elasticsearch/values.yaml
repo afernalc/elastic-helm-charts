@@ -84,10 +84,10 @@ esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 resources:
   requests:
     cpu: "1000m"
-    memory: "512M"
+    memory: "2Gi"
   limits:
     cpu: "1000m"
-    memory: "512M"
+    memory: "2Gi"
 
 initResources: {}
 # limits:
@@ -103,7 +103,7 @@ volumeClaimTemplate:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 20Gi
+      storage: 10Gi
 
 rbac:
   create: false
