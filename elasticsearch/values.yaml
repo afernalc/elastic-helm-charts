@@ -21,8 +21,8 @@ roles:
   - remote_cluster_client
   - transform
 #ARR Only one elastic node
-replicas: 3
-minimumMasterNodes: 2
+replicas: 1
+minimumMasterNodes: 1
 
 esMajorVersion: ""
 
@@ -79,15 +79,15 @@ podAnnotations: {}
 # additionals labels
 labels: {}
 
-esJavaOpts: "-Xmx128m -Xms128m" # example: "-Xmx1g -Xms1g"
+esJavaOpts: "-Xmx1g -Xms1g" # example: "-Xmx1g -Xms1g"
 
 resources:
   requests:
-    cpu: "500m"
-    memory: "512M"
+    cpu: "1000m"
+    memory: "2Gi"
   limits:
-    cpu: "500m"
-    memory: "512M"
+    cpu: "1000m"
+    memory: "2Gi"
 
 initResources: {}
 # limits:
@@ -231,9 +231,9 @@ sysctlVmMaxMapCount: 262144
 readinessProbe:
   failureThreshold: 3
   initialDelaySeconds: 600
-  periodSeconds: 100
+  periodSeconds: 300
   successThreshold: 3
-  timeoutSeconds: 50
+  timeoutSeconds: 300
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html#request-params wait_for_status
 clusterHealthCheckParams: "wait_for_status=green&timeout=120s"
