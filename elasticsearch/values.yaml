@@ -73,9 +73,6 @@ image: "docker.elastic.co/elasticsearch/elasticsearch"
 imageTag: "8.0.0-SNAPSHOT"
 imagePullPolicy: "IfNotPresent"
 
-# Permit co-located instances for solitary minikube virtual machines.
-antiAffinity: "soft"
-
 podAnnotations: {}
 # iam.amazonaws.com/role: es-cluster
 
@@ -86,10 +83,10 @@ esJavaOpts: "-Xmx128m -Xms128m" # example: "-Xmx1g -Xms1g"
 
 resources:
   requests:
-    cpu: "100m"
+    cpu: "500m"
     memory: "512M"
   limits:
-    cpu: "1000m"
+    cpu: "500m"
     memory: "512M"
 
 initResources: {}
@@ -171,7 +168,11 @@ antiAffinityTopologyKey: "kubernetes.io/hostname"
 
 # Hard means that by default pods will only be scheduled if there are enough nodes for them
 # and that they will never end up on the same node. Setting this to soft will do this "best effort"
-antiAffinity: "hard"
+#antiAffinity: "hard"
+# Permit co-located instances for solitary minikube virtual machines.
+antiAffinity: "soft"
+
+
 
 # This is the node affinity settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
@@ -229,7 +230,7 @@ sysctlVmMaxMapCount: 262144
 
 readinessProbe:
   failureThreshold: 3
-  initialDelaySeconds: 120
+  initialDelaySeconds: 600
   periodSeconds: 100
   successThreshold: 3
   timeoutSeconds: 50
